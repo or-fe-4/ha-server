@@ -1,11 +1,11 @@
-services:
-  lb:
-    image: nginx:latest
-    ports:
+services: # 起動するコンテナの一覧
+  lb: # コンテナの名前
+    image: nginx:latest # コンテナ化するソフトを選択
+    ports: # ホストの80番をコンテナの80番に繋ぐ
       - "80:80"
-    volumes:
+    volumes: # ホスト側の./nginx.confをコンテナ内の/etc/nginx/conf.d/default.confとする
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
-    depends_on:
+    depends_on: # web1とweb2を起動してからlbを起動
       - web1
       - web2
 
